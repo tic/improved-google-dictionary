@@ -1,0 +1,16 @@
+h1 {
+    font-size: 50pt;
+
+}
+
+li a {
+    color: black;
+    font-size: 32pt;
+}
+
+#bg{
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}

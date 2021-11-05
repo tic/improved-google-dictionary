@@ -1,0 +1,17 @@
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'experiment/style.css' %}">
+<body id="bg" style="background-image: url('{% static "experiment/images/Oscar the grouch.png"%}')";>
+<h1> Questions of the Day:</h1>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'experiment:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No experiment are available.</p>
+{% endif %}

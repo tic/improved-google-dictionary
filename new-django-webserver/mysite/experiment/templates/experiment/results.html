@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'experiment/style.css' %}">
+<body id="bg" style="background-image: url('{% static "experiment/images/Oscar the grouch.png"%}')";>
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'experiment:detail' question.id %}">Vote again?</a>
+<br>
+<br>
+<br>
+<button type="button" name="button"> <a href="{% url 'experiment:home' %}">Home</a></button>

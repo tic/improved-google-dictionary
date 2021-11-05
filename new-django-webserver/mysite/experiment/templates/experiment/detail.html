@@ -1,0 +1,42 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'experiment/style.css' %}">
+<body id="bg" style="background-image: url('{% static "experiment/images/Oscar the grouch.png"%}')";>
+
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<form action="{% url 'experiment:vote' question.id %}" method="post">
+    {% if question.pk == 3 %}
+        {% for i in '012345678'|make_list %}
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+            {{ forloop.counter }}
+        {% endfor %}
+    {% endif %}
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+<input type="submit" value="Vote">
+</form>
+
+{% if question.pk == 4 %}
+    <img src="{%static "experiment/images/testing.jpg" %}" alt="">
+    <img src="{%static "experiment/images/testing1.jpg" %}" alt="">
+    <img src="{%static "experiment/images/testing2.jpg" %}" alt="">
+    <img src="{%static "experiment/images/testing3.jpg" %}" alt="">
+    <img src="{%static "experiment/images/testing4.jpg" %}" alt="">
+{% endif %}
+
+
+<br>
+<br>
+<br>
+<button type="button" name="button"> <a href="{% url 'experiment:home' %}">Home</a></button>
