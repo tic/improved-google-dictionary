@@ -1,4 +1,24 @@
 from django.db import models
+import datetime
+
+
+class User(models.Model):
+    #Primary key
+    user_email = models.CharField(primary_key = True, max_length = 200)
+
+    user_exten1 = models.IntegerField(choices = [(0, 0), (1, 1)])
+
+    # User times
+    user_t1 = models.TimeField(null = True)
+    user_t2 = models.TimeField(null = True)
+    user_t3 = models.TimeField(null = True)
+    user_t4 = models.TimeField(null = True)
+    user_t5 = models.TimeField(null = True)
+    user_t6 = models.TimeField(null = True)
+
+    def __str__(self):
+        return self.user_email
+
 
 
 class Question(models.Model):
