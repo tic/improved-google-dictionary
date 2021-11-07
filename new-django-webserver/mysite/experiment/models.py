@@ -19,7 +19,10 @@ class User(models.Model):
     def __str__(self):
         return self.user_email
 
-
+class Authenticator(models.Model):
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    authenticator = models.CharField(max_length=255, primary_key=True)
+    date_created = models.DateField(auto_now_add=True)
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)

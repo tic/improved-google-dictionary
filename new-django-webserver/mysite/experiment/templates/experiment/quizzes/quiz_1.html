@@ -1,0 +1,15 @@
+{% extends "experiment/quiz_survey_base.html" %}
+
+{% block title %}Quiz 1{% endblock %}
+
+{% block user %}Particpant #{{ participant_id }}{% endblock %}
+
+{% block quiz %}Paper 1 Vocabulary Quiz{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:paper_2' %}">Next</a>
+{% endblock %}
+
+{% block content %}
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe8ZxJfebA_kuCSroGBJRr1uRBmTQzEGfAafDnPSyz676CrQw/viewform?embedded=true" width="640" height="1941" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+{% endblock %}
