@@ -1,0 +1,15 @@
+{% extends "experiment/quiz_survey_base.html" %}
+
+{% block title %}Sample Quiz{% endblock %}
+
+{% block user %}Particpant #{{ participant_id }}{% endblock %}
+
+{% block quiz %}Sample Paper Vocabulary Quiz{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:paper_1' %}">Begin</a>
+{% endblock %}
+
+{% block content %}
+    <p>Embed sample quiz</p>
+{% endblock %}
