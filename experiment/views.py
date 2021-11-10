@@ -66,7 +66,6 @@ def welcome(request):
             # if succussful, set auth cookie w/ 2 hour ttl
             response = HttpResponseRedirect(reverse('experiment:paper_sample'))
             response.set_cookie('auth', authenticator, max_age=3600)
-            print("set cookie")
             return response
         else:
             return render(request, 'experiment/welcome.html', {'form': form})
