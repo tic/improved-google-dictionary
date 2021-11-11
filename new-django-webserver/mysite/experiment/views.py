@@ -18,19 +18,6 @@ def consent_form(request):
 def paper_s(request):
     return render(request,'experiment/paper_s.html')
 
-class PaperView(generic.TemplateView):
-    # try to get the authenticator cookie
-    auth = request.COOKIES.get('auth')
-
-    # if the authenticator cookie wasn't set...
-    if not auth:
-        # send user to welcome page
-        return HttpResponseRedirect(reverse('experiment:welcome'))
-
-    model = User
-    template_name = 'experiment/paper_1.html'
-
-
 
 def welcome(request):
     # if user is already authenticated redirect to sample paper page
@@ -50,7 +37,7 @@ def welcome(request):
 
             # attempt to create new user in db
             try:
-                User.objects.create(user_email=particpant_id, user_exten1=random.randint(0,1)).save()
+                User.objects.create(user_email=particpant_id, user_exten1=random.randint(0,1), user_t1 = timezone.now()).save()
                 user = User.objects.get(user_email=particpant_id)
 
                 # generate new authenticator
@@ -128,6 +115,26 @@ def quiz_sample(request):
 
     return render(request,'experiment/quizzes/quiz_sample.html', context)
 
+def paper_1(request):
+    # try to get the authenticator cookie
+    auth = request.COOKIES.get('auth')
+
+    # if the authenticator cookie wasn't set...
+    if not auth:
+        # send user to welcome page
+        return HttpResponseRedirect(reverse('experiment:welcome'))
+
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    user = authenticator.user_id
+    user.user_t1 = datetime.now()
+    user.save()
+
+    context = {
+        'participant_id' : user.user_email
+    }
+
+    return render(request,'experiment/paper_1.html',context)
+
 def paper_2(request):
     # try to get the authenticator cookie
     auth = request.COOKIES.get('auth')
@@ -139,11 +146,14 @@ def paper_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    if user.user_t3 == None:
-        user.user_t3 = datetime.now()
-        user.save()
+    user.user_t3 = datetime.now()
+    user.save()
 
-    return render(request,'experiment/paper_2.html')
+    context = {
+        'participant_id' : user.user_email
+    }
+
+    return render(request,'experiment/paper_2.html',context)
 
 def quiz_s(request):
     return render(request,'experiment/quiz_s.html')
@@ -159,9 +169,8 @@ def quiz_1(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    if user.user_t2 == None:
-        user.user_t2 = datetime.now()
-        user.save()
+    user.user_t2 = datetime.now()
+    user.save()
 
     context = {
         'participant_id' : user.user_email
@@ -180,9 +189,8 @@ def quiz_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    if user.user_t4 == None:
-        user.user_t4 = datetime.now()
-        user.save()
+    user.user_t4 = datetime.now()
+    user.save()
 
     context = {
         'participant_id' : user.user_email
@@ -201,9 +209,8 @@ def exit_survey(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    if user.user_t5 == None:
-        user.user_t5 = datetime.now()
-        user.save()
+    user.user_t5 = datetime.now()
+    user.save()
 
     context = {
         'participant_id' : user.user_email
@@ -301,7 +308,7 @@ def set_time(request, t):
     time = timezone.now()
     u  = User.objects.filter(user_t1__lte=timezone.now()).order_by('user_t1')[0]
 
-    page_order = ['', 'experiment:paper_1', 'experiment:quiz_1', 'experiment:paper_2', 'experiment:quiz_2', 'experiment:ux']
+    page_order = ['', 'experiment:paper_1', 'experiment:quiz_1', 'experiment:paper_2', 'experiment:quiz_2', 'experiment:exit_survey']
     if t == 1:
         u.user_t1 = time
 

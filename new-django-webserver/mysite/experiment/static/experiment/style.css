@@ -13,11 +13,18 @@ li a {
     font-size: 32pt;
 }
 
-.authors{
-  font-size: 18pt;
+.Authors{
+  font-size: 80%;
   text-align: justify;
-  color: grey;
   font-variant: small-caps;
+  padding-left: 32px;
+  text-indent: -18px;
+}
+
+.paragraph{
+  text-align: justify;
+  text-indent: 18px;
+  padding-bottom: 18px;
 }
 
 #bg{
@@ -28,7 +35,12 @@ li a {
 }
 
 img{
-  float: right;
-  width: 1080;
-  margin: 20
+  float: center;
+  max-width:100%;
+  margin: 20;
+}
+
+figcaption{
+  font-size: 75%;
+  color: grey;
 }

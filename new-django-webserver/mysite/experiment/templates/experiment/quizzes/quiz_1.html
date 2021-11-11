@@ -2,12 +2,13 @@
 
 {% block title %}Quiz 1{% endblock %}
 
-{% block user %}Particpant #{{ participant_id }}{% endblock %}
+{% block user %}Participant #{{ participant_id }}{% endblock %}
 
 {% block quiz %}Paper 1 Vocabulary Quiz{% endblock %}
 
 {% block button %}
     <a class="btn btn-outline-light" href="{% url 'experiment:paper_2' %}">Next</a>
+
 {% endblock %}
 
 {% block content %}

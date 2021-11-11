@@ -1,53 +1,36 @@
-<!-- {% block style %} -->
+{% extends "experiment/paper_base.html" %}
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'experiment/style.css' %}">
 
-<!-- {% endblock style %} -->
+{% block title} Paper 1 {%endblock}
 
-<!-- {% block content %} -->
-<h1> p21 produces a bioactive secretome that places stressed cells under immunosurveillance </h1>
+{% block user %}Participant #{{ participant_id }}{% endblock %}
+
+{% block paper %}Paper 1{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:quiz_1' %}">Next</a>
+{% endblock %}
+
+{% block content %}
+<h1> Frequency Diffeomorphisms for Efficient Image Registration </h1>
+
+<div class = "Authors">Miaomiao Zhang, Ruizhi Liao, Adrian V. Dalca, Esra A. Turk, Jie Luo, P. Ellen Grant, and Polina Golland </div>
+
 <figure>
-  <img id = "figure", src = {% static "experiment/images/paper_1_image.jpg" %}/>
-  <figcaption> p21 places stressed cells under immunosurveillance. p21 induced by cells under duress activates an
-    Rb-dependent transcriptional program that produces CXCL14 and other secreted factors. CXCL14 promptly
-    recruits macrophages, which disengage if stressed cells recuperate and normalize p21 within 4 days.
-    However, if p21 induction persists, the adjoined macrophages polarize toward an M1 phenotype and cytotoxic
-    T cells arrive to eliminate target cells, including preneoplastic cells.</figcaption>
+  <img id = "figure", src = {% static "experiment/images/paper_2_image.png" %}/>
+  <figcaption> Left: average optimal energy for different values of the truncated dimension n = 8, 16, . . . , 128. Right: example propagated segmentation with 35 structures obtained by our method. 2D slices are shown for visualization only, all computations are carried out fully in 3D.</figcaption>
 </figure>
 
-<div class = "Authors"> Ines Sturmlechner, Cheng Zhang, Chance C. Sine, Erik-Jan van Deursen, Karthik B. Jeganathan,
-Naomi Hamada, Jan Grasic, David Friedman, Jeremy T. Stutchman, Ismail Can, Masakazu Hamada,
-Do Young Lim, Jeong-Heon Lee, Tamas Ordog, Remi-Martin Laberge, Virginia Shapiro,
-Darren J. Baker, Hu Li*, Jan M. van Deursen* </div>
+<h3> Abstract </h3>
+<div class = "paragraph"> This paper presents an efficient algorithm for large deformation diffeomorphic metric mapping (LDDMM) with geodesic shooting for image registration. We introduce a novel finite dimensional Fourier representation of diffeomorphic deformations based on the key fact that the high frequency components of a diffeomorphism remain stationary throughout the integration process when computing the deformation associated with smooth velocity fields. We show that manipulating high dimensional diffeomorphisms can be carried out entirely in the bandlimited space by integrating the nonstationary low frequency components of the displacement field. This insight substantially reduces the computational cost of the registration problem. Experimental results show that our method is significantly faster than the state-of-the-art diffeomorphic image registration methods while producing equally accurate alignment. We demonstrate our algorithm in two different applications of image registration: neuroimaging and in-utero imaging. </div>
 
+<h3> 1 Introduction </h3>
 
-<h3> INTRODUCTION: </h3>
+<div class = "paragraph"> Diffeomorphisms have been widely used in the field of image registration [6, 7], atlas-based image segmentation [4,10], and anatomical shape analysis [14, 22]. In this paper, we focus on a time-varying velocity field representation for diffeomorphisms as it supplies a distance metric that is critical to statistical analysis of anatomical shapes, for instance, by least squares, geodesic regression, or principal modes detection [13,16,22]. </div>
+<br>
+<div class = "paragraph"> In spite of the advantages of supporting Riemannian metrics in LDDMM, the extremely high computational cost and large memory footprint of the current implementations has limited the use of time-varying velocity representations in important applications that require computational efficiency. The original LDDMM optimization performs gradient decent on the entire time-varying velocity field that is defined on a dense image grid. Since a geodesic is uniquely determined by its initial conditions on the velocity field, the geodesic shooting algorithm has been shown to reduce the computational complexity and improve optimization landscape by manipulating the initial velocity via the geodesic evolution equations [20]. FLASH (finite dimensional Lie algebras for shooting) [23] is a recent variant of LDDMM with geodesic shooting that employs a low dimensional bandlimited representation of the initial velocity field to further improve the convergence and efficiency of the optimization. The algorithm still maps the velocity fields from the low dimensional Fourier space back to the full image domain to perform forward integration at each iteration [23]. The computational complexity of this step thus dominates the entire procedure of diffeomorphic image registration. </div>
+<br>
+<div class = "paragraph"> Previous works that aimed to improve diffeomorphic representations have reduced the high degrees of freedom available to represent the velocity fields, but not the diffeomorphisms themselves. In this paper, we adopt the low dimensional representation of the tangent space of diffeomorphisms [23] and propose an efficient way to compute diffeomorphisms in the bandlimited space, thus further reducing the computational complexity of image registration. Our approach is based on the important insight that only the low frequency components of the diffeomorphisms vary over time when integrating a bandlimited velocity field to obtain the deformation. Since the optimization of image registration can be directly solved by advecting the inverse of diffeomorphisms [17], we propose a novel Fourier representation of the deformation in the inverse coordinate system that is computed entirely in the low dimensional bandlimited space. The theoretical tools developed in this paper are broadly applicable to other parametrization of diffeomorphic transformations, such as stationary velocity fields [2,3,19]. To evaluate the proposed algorithm, we perform image registration of real 3D MR images and show that the accuracy of the propagated segmentations is comparable to that obtained via the state-of-the-art diffeomorphic image registration methods, while the runtime and the memory demands are dramatically lower for our method. We demonstrate the method in the context of atlas-based segmentation of brain images and of temporal alignment of in-utero MRI scans.
 
-<div class="paragraph">
-  Complex multicellular organisms are subject to a myriad of cellular stresses, which can be managed through cell-intrinsic adaptation and repair mechanisms. Cells that fail to recover activate programs that lead to regulated cell death or cellular senescence, thereby limiting the risk of neoplastic transformation. Evidence is emerging that intercellular communication also plays an important role in dealing with cellular stresses. For instance, cells experiencing DNA damage display cell-surface ligands that facilitate lymphocyte recognition and secrete cytokines that attract myeloid cells. Furthermore, cells undergoing cellular senescence generate a bioactive secretome known as the senescence-associated  secretory phenotype (SASP), which facilitates senescent cell (SNC) recognition by the immune system.
-</div>
-
-<h3> RATIONALE: </h3>
-
-<div class="paragraph">
-  Stressed cells that become senescent have been implicated in various biological processes beyond cancer, including development, tissue repair, aging, and age-related diseases, presumably through the paracrine actions of the SASP. To better understand the molecular properties of SNCs, we sought  to identify key determinants of SNC identity by screening for genes nearby senescence-associated super-enhancers conserved across stressors, cell types, and mammalian species. Through this approach, we identified p21 (Cdkn1a), which encodes the cyclin-dependent kinase (CDK) inhibitor p21, and conducted an in-depth analysis of its functions from the time cells first experience stress until they have become senescent.
-</div>
-
-<h3>RESULTS: </h3>
-
-<div class="paragraph">
-  We found that p21—in addition to its function in maintaining the cell-cycle arrest of SNCs—has a prominent role in establishing the SASP through retinoblastoma protein (Rb)–dependent transcription involving select SMAD and STAT transcription factors. Although this transcriptional program remains active in SNCs, p21 initiates this program as a first response to stress occurring in parallel with cell-cycle arrest. The resulting immediate-early secretome, which we term the p21-activated secretory phenotype (PASP), comprises several hundred factors, including the chemokine CXCL14, which recruits macrophages to surveil stressed cells with elevated p21. In mouse liver, these macrophages disengage if cells normalize p21 levels within 4 days after its induction. However, if p21 remains elevated, the adjoined macrophages polarize toward an M1 phenotype, and cytotoxic T lymphocytes arrive to execute target cell elimination when classical markers of senescence are not yet detectable. This scenario also occurs with oncogenic KRAS-mediated p21 induction, highlighting the physiological relevance of the uncovered immunosurveillance mechanism to tumor suppression. By contrast, CDK inhibitor p16, which is often elevated in SNCs and also halts cell-cycle progression through Rb hypo-phosphorylation, does not induce immunosurveillance when overexpressed in mouse liver. Although p16 induction yields an immediate-early secretome that consists largely of factors that overlap with the PASP, there are far fewer factors, and CXCL14 is absent. Studies on CDK inhibitor p27 further suggested that coordinated induction of cell-cycle arrest and immunosurveillance is a distinctive feature of p21.
-</div>
-
-<h3>CONCLUSION: </h3>
-<div class="">
-  Our study demonstrates that in response to cellular stress, p21 alters the transcription regulatory properties of Rb to not only inhibit genes required for cell-cycle progression but also activate a large collection of genes implicated in diverse biological functions, including immunosurveillance. By promptly recruiting macrophages to stressed cells, p21 sets a biological timer that allows for a period in which stressed cells can recuperate, thereby normalizing p21. This timer expires when the immune response transitions from a surveillance to a clearance mode. As such, p21 provides a first line of defense against dysfunctional cells that can become cancerous or otherwise cause pathology. Given that p21 is a p53 target gene, it will be important to define whether this p21-controlled immunoclearance mechanism is perturbed in cancer cells that lack functional p53, and if so, to explore the therapeutic impact of interventions that reactivate it.
-</div>
-
-<form action="{% url 'experiment:set_time' 2 %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="To the quiz!">
-</form>
-
-<!-- {% endblock content%} -->
+{% endblock content%}
