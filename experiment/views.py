@@ -22,7 +22,7 @@ def paper_s(request):
 def welcome(request):
     # if user is already authenticated redirect to sample paper page
     if request.COOKIES.get('auth'):
-        return HttpResponseRedirect(reverse('experiment:paper_sample'))
+        return HttpResponseRedirect(reverse('experiment:consent_form'))
 
     if request.method == 'POST':
         # validate form

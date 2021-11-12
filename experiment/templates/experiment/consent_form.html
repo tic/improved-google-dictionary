@@ -1,1 +1,13 @@
-<p> Hello World! </p>
+{% extends "experiment/paper_base.html" %}
+
+{% block title} Consent Form {%endblock}
+
+{% block user %}Participant #{{ participant_id }}{% endblock %}
+
+{% block paper %}Consent Form{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:demographics_survey' %}">Next</a>
+{% endblock %}
+
+{% block content %}

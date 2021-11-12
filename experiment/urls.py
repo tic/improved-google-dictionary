@@ -5,8 +5,8 @@ from . import views
 
 app_name = 'experiment'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('home', views.IndexView.as_view(), name='home'),
+    path('', views.welcome, name='index'),
+    path('home', views.welcome, name='home'),
     path('welcome', views.welcome, name='welcome'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
