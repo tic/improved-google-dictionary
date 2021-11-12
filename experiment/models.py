@@ -9,12 +9,12 @@ class User(models.Model):
     user_exten1 = models.IntegerField(choices = [(0, 0), (1, 1)])
 
     # User times
-    user_t1 = models.DateTimeField()
-    user_t2 = models.DateTimeField(null = True)
-    user_t3 = models.DateTimeField(null = True)
-    user_t4 = models.DateTimeField(null = True)
-    user_t5 = models.DateTimeField(null = True)
-    user_t6 = models.DateTimeField(null = True)
+    user_t1 = models.TimeField(null = True)
+    user_t2 = models.TimeField(null = True)
+    user_t3 = models.TimeField(null = True)
+    user_t4 = models.TimeField(null = True)
+    user_t5 = models.TimeField(null = True)
+    user_t6 = models.TimeField(null = True)
 
     def __str__(self):
         return self.user_email

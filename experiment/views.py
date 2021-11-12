@@ -37,7 +37,7 @@ def welcome(request):
 
             # attempt to create new user in db
             try:
-                User.objects.create(user_email=particpant_id, user_exten1=random.randint(0,1), user_t1 = timezone.now()).save()
+                User.objects.create(user_email=particpant_id, user_exten1=random.randint(0,1), user_t1 = datetime.now()).save()
                 user = User.objects.get(user_email=particpant_id)
 
                 # generate new authenticator
@@ -130,7 +130,7 @@ def paper_1(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t1 = timezone.now()
+    user.user_t1 = datetime.now()
     user.save()
 
     context = {
@@ -150,7 +150,7 @@ def paper_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t3 = timezone.now()
+    user.user_t3 = datetime.now()
     user.save()
 
     context = {
@@ -173,7 +173,7 @@ def quiz_1(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t2 = timezone.now()
+    user.user_t2 = datetime.now()
     user.save()
 
     context = {
@@ -193,7 +193,7 @@ def quiz_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t4 = timezone.now()
+    user.user_t4 = datetime.now()
     user.save()
 
     context = {
@@ -213,7 +213,7 @@ def exit_survey(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t5 = timezone.now()
+    user.user_t5 = datetime.now()
     user.save()
 
     context = {
