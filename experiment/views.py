@@ -59,7 +59,6 @@ def welcome(request):
             # if succussful, set auth cookie w/ 2 hour ttl
             response = HttpResponseRedirect(reverse('experiment:paper_sample'))
             response.set_cookie('auth', authenticator, max_age=3600)
-            print("set cookie")
             return response
         else:
             return render(request, 'experiment/welcome.html', {'form': form})
@@ -97,7 +96,12 @@ def paper_sample(request):
         # send user to welcome page
         return HttpResponseRedirect(reverse('experiment:welcome'))
 
-    return render(request, 'experiment/paper_sample.html')
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    context = {
+        'participant_id' : authenticator.user_id.user_email
+    }
+
+    return render(request, 'experiment/paper_sample.html', context)
 
 def quiz_sample(request):
     # try to get the authenticator cookie
@@ -126,7 +130,7 @@ def paper_1(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t1 = datetime.now()
+    user.user_t1 = timezone.now()
     user.save()
 
     context = {
@@ -146,7 +150,7 @@ def paper_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t3 = datetime.now()
+    user.user_t3 = timezone.now()
     user.save()
 
     context = {
@@ -169,7 +173,7 @@ def quiz_1(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t2 = datetime.now()
+    user.user_t2 = timezone.now()
     user.save()
 
     context = {
@@ -189,7 +193,7 @@ def quiz_2(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t4 = datetime.now()
+    user.user_t4 = timezone.now()
     user.save()
 
     context = {
@@ -209,7 +213,7 @@ def exit_survey(request):
 
     authenticator = Authenticator.objects.get(authenticator=auth)
     user = authenticator.user_id
-    user.user_t5 = datetime.now()
+    user.user_t5 = timezone.now()
     user.save()
 
     context = {

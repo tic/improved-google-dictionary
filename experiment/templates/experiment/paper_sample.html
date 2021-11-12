@@ -9,16 +9,15 @@
 {% block paper %}Sample Paper{% endblock %}
 
 {% block button %}
-    <a class="btn btn-outline-light" href="{% url 'experiment:quiz_sample' %}">Begin</a>
+    <a class="btn btn-outline-light" href="{% url 'experiment:quiz_sample' %}">Next</a>
 {% endblock %}
 
 {% block content %}
 <h1> Wikipedia Wikipedia page </h1>
 
 <div class = "Authors"> Misc </div>
-
 <figure>
-  <img id = "figure", src = {% static "experiment/images/paper_sample_image.jpg" %}/>
+  <img id = "figure", src = "../../static/experiment/images/paper_sample_image.jpg" width="341" height="312"/>
   <figcaption> Wikipedia logo</figcaption>
 </figure>
 <div class = "paragraph">
