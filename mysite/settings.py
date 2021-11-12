@@ -25,17 +25,6 @@ SECRET_KEY = 'hv$q1lg4#%6kxp%(hrpsbb7^r&6*g!%ede937bz03=&bn5*2r9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Configure Django App for Heroku.
-try:
-    import dj_database_url
-    import django_heroku
-
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    # Activate Django-Heroku
-    django_heroku.settings(locals())
-except ImportError:
-    found = False
-
 ALLOWED_HOSTS = []
 
 
@@ -130,3 +119,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configure Django App for Heroku.
+try:
+    import dj_database_url
+    import django_heroku
+
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # Activate Django-Heroku
+    django_heroku.settings(locals())
+except ImportError:
+    found = False
