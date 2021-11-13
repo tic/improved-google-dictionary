@@ -1,2 +1,15 @@
+{% extends "experiment/paper_base.html" %}
+
+{% block title} Thank You! {%endblock}
+
+{% block user %}Participant #{{ participant_id }}{% endblock %}
+
+{% block paper %}{% endblock %}
+
+{% block button %}{% endblock %}
+
+{% block content %}
 <h1>Thank You!</h1>
-<button id='logout' onclick="location.href = '{% url 'experiment:logout' %}'">Exit</button>
+<button id='logout' onclick="location.href = '{% url 'experiment:logout' %}'" style="width: 200px; height: 75px; margin-left: 38%">Exit</button>
+
+{% endblock %}

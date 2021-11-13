@@ -57,7 +57,7 @@ def welcome(request):
                 return render(request, 'experiment/welcome.html', {'form': form})
 
             # if succussful, set auth cookie w/ 2 hour ttl
-            response = HttpResponseRedirect(reverse('experiment:paper_sample'))
+            response = HttpResponseRedirect(reverse('experiment:consent_form'))
             response.set_cookie('auth', authenticator, max_age=3600)
             return response
         else:
@@ -118,6 +118,34 @@ def quiz_sample(request):
     }
 
     return render(request,'experiment/quizzes/quiz_sample.html', context)
+
+def switch_extensions(request):
+    # try to get the authenticator cookie
+    auth = request.COOKIES.get('auth')
+
+    # if the authenticator cookie wasn't set...
+    if not auth:
+        # send user to welcome page
+        return HttpResponseRedirect(reverse('experiment:welcome'))
+
+
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    user = authenticator.user_id
+
+
+    context = {
+        'participant_id' : user.user_email
+    }
+
+    context['paper_1'] = False if user.user_t2 else True
+
+    if not user.user_exten1 and user.user_t2 or user.user_exten1 and not user.user_t2:
+        return render(request,'experiment/holder_exten_0.html', context)
+    else:
+        return render(request,'experiment/holder_exten_1.html', context)
+
+
+
 
 def paper_1(request):
     # try to get the authenticator cookie
@@ -231,7 +259,12 @@ def finish(request):
         # send user to welcome page
         return HttpResponseRedirect(reverse('experiment:welcome'))
 
-    return render(request, 'experiment/finish.html')
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    context = {
+        'participant_id' : authenticator.user_id.user_email
+    }
+
+    return render(request, 'experiment/finish.html', context)
 
 def logout(request):
     # try to get the authenticator cookie
@@ -249,12 +282,6 @@ def logout(request):
     response = HttpResponseRedirect(reverse('experiment:welcome'))
     response.delete_cookie('auth')
     return response
-
-def ux_form(request):
-    return render(request,'experiment/ux.html')
-
-def thanks(request):
-    return render(request,'experiment/thanks.html')
 
 
 

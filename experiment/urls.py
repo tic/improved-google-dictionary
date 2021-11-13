@@ -23,4 +23,5 @@ urlpatterns = [
     path('finish', views.finish, name='finish'),
     path('logout', views.logout, name='logout'),
     path('<int:t>set_time', views.set_time, name='set_time'),
+    path('switch_extensions', views.switch_extensions, name = 'switch_extensions')
 ]
