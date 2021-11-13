@@ -12,9 +12,6 @@ import random
 import hmac
 import os
 
-def consent_form(request):
-    return render(request,'experiment/consent_form.html')
-
 def paper_s(request):
     return render(request,'experiment/paper_s.html')
 
@@ -74,7 +71,12 @@ def consent_form(request):
         # send user to welcome page
         return HttpResponseRedirect(reverse('experiment:welcome'))
 
-    return render(request,'experiment/consent_form.html')
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    context = {
+        'participant_id' : authenticator.user_id.user_email
+    }
+
+    return render(request,'experiment/consent_form.html', context)
 
 def demographics_survey(request):
     # try to get the authenticator cookie
@@ -85,7 +87,12 @@ def demographics_survey(request):
         # send user to welcome page
         return HttpResponseRedirect(reverse('experiment:welcome'))
 
-    return render(request, 'experiment/surveys/demographics_survey.html')
+    authenticator = Authenticator.objects.get(authenticator=auth)
+    context = {
+        'participant_id' : authenticator.user_id.user_email
+    }
+
+    return render(request, 'experiment/surveys/demographics_survey.html', context)
 
 def paper_sample(request):
     # try to get the authenticator cookie
@@ -143,8 +150,6 @@ def switch_extensions(request):
         return render(request,'experiment/holder_exten_0.html', context)
     else:
         return render(request,'experiment/holder_exten_1.html', context)
-
-
 
 
 def paper_1(request):
