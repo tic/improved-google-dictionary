@@ -2,9 +2,9 @@
 "update_url": "https://clients2.google.com/service/update2/crx",
 
   "manifest_version": 2,
-  "name": "Improved Google Dictionary",
-  "version": "5.0.0",
-  "description": "Improves upon the Google Dictionary extension by adding some new quality of life features.",
+  "name": "Dictionary Extension A",
+  "version": "1.0.0",
+  "description": "One of the two extensions to switch between in this study.",
   "background": {
     "page": "background.html",
     "persistent": false
@@ -22,7 +22,7 @@
   ],
   "browser_action": {
     "default_icon": "static/icon19.png",
-    "default_title": "Improved Google Dictionary",
+    "default_title": "Dictionary A",
     "default_popup": "browser_action.html"
   },
   "permissions": [
