@@ -1,0 +1,15 @@
+{% extends "experiment/paper_base.html" %}
+
+{% block title} Consent Form {%endblock}
+
+{% block user %}Participant #{{ participant_id }}{% endblock %}
+
+{% block paper %}Consent Form{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:demographics_survey' %}">Agree</a>
+{% endblock %}
+
+{% block content %}
+<iframe src="https://docs.google.com/document/d/e/2PACX-1vTQbi43trwCig3EoPiM9t7tYEeH5LmzI5IP2sUk6ywznf-BhPP5iz5UtBR1QCeYog/pub?embedded=true" height="1080"></iframe>
+{% endblock %}

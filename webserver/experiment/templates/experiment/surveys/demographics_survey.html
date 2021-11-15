@@ -1,0 +1,15 @@
+{% extends "experiment/quiz_survey_base.html" %}
+
+{% block title %}Demographics Survey{% endblock %}
+
+{% block user %}Particpant #{{ participant_id }}{% endblock %}
+
+{% block quiz %}Demographics Survey{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:paper_sample' %}">Practice</a>
+{% endblock %}
+
+{% block content %}
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe12PHk6NS5Xp0676ZXijH5EoLYywEpBYhIR-F4vAmK7XzSHQ/viewform?embedded=true" width="640" height="2084" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+{% endblock %}

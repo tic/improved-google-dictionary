@@ -1,0 +1,62 @@
+body {
+  margin: 30;
+
+}
+
+h1 {
+    font-size: 50pt;
+    text-align: center;
+
+}
+
+li a {
+    color: black;
+    font-size: 32pt;
+}
+
+.Authors{
+  font-size: 80%;
+  text-align: justify;
+  font-variant: small-caps;
+  padding-left: 32px;
+  text-indent: -18px;
+}
+
+.paragraph{
+  text-align: justify;
+  text-indent: 18px;
+  padding-bottom: 18px;
+}
+
+#bg{
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+
+.holder{
+  text-align: justify;
+  font-size: 32px;
+}
+
+.walkthrough{
+  float: left;
+  width: 33%;
+  padding: 10px;
+}
+
+iframe{
+  max-height: 880px;
+}
+
+img{
+  float: center;
+  max-width:100%;
+  margin: 20;
+}
+
+figcaption{
+  font-size: 75%;
+  color: grey;
+}

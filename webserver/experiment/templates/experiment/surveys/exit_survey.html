@@ -1,0 +1,15 @@
+{% extends "experiment/quiz_survey_base.html" %}
+
+{% block title %}Exit Survey{% endblock %}
+
+{% block user %}Particpant #{{ participant_id }}{% endblock %}
+
+{% block quiz %}Exit Survey{% endblock %}
+
+{% block button %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:finish' %}">Finish</a>
+{% endblock %}
+
+{% block content %}
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjTK6AozFMGgtVYLO3I9bK7-TIbrM6mtqpNrb1jAS81ptRYg/viewform?embedded=true" width="640" height="2370" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "experiment/paper_base.html" %}
+
+{% block title} Extension Switch {%endblock}
+
+{% block user %}Participant #{{ participant_id }}{% endblock %}
+
+{% block paper %}Extension Switch{% endblock %}
+
+{% block button %}
+{% if paper_1 %}
+    <a class="btn btn-outline-light" href="{% url 'experiment:paper_1' %}">Begin</a>
+{% else %}
+<a class="btn btn-outline-light" href="{% url 'experiment:paper_2' %}">Begin</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class = 'holder'>
+              Please deactivate extension B, and ensure that extension A is activated. Please ask your coordinator if you would like assistance or clarification.
+</div>
+{% endblock %}
